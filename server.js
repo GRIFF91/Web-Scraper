@@ -69,7 +69,7 @@ app.get("/scrape", function(req, res) {
     });
 
     // If we were able to successfully scrape and save an Article, send a message to the client
-    res.send("Scrape Complete");
+    res.send();
   });
 });
 
@@ -123,6 +123,19 @@ app.post("/articles/:id", function(req, res) {
     .catch(function(err) {
       // If an error occurred, send it to the client
       res.json(err);
+    });
+});
+
+//Clear the DB
+app.get('/clear', function(req, res) {
+    db.Article.remove({}, function(err, response){
+        if (err){
+            console.log(err);
+            res.send(err);
+        } else {
+            console.log(response);
+            res.send(response);
+        }
     });
 });
 

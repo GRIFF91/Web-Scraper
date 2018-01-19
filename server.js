@@ -35,6 +35,11 @@ mongoose.connect("mongodb://localhost/week18Populater", {
 
 // Routes
 
+// main index route
+app.get('/', function(req, res) {
+  res.send(index.html);
+});
+
 // A GET route for scraping the echojs website
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
@@ -69,7 +74,9 @@ app.get("/scrape", function(req, res) {
     });
 
     // If we were able to successfully scrape and save an Article, send a message to the client
-    res.send();
+    
+    res.send('successfully scraped');
+
   });
 });
 
@@ -133,8 +140,8 @@ app.get('/clear', function(req, res) {
             console.log(err);
             res.send(err);
         } else {
-            console.log(response);
-            res.send(response);
+            console.log("DB Cleared");
+            res.send("DB Cleared");
         }
     });
 });
